@@ -28,9 +28,9 @@ $(document).ready(function() {
       $('.dollars').append(player.dollars);
     }
 
-    $('#food').css('width', tamagotchiOne.food + "%");
-    $('#activity').css('width', tamagotchiOne.activity + "%");
-    $('#sleep').css('width', tamagotchiOne.sleep + "%");
+    $('#food-level').css('width', tamagotchiOne.food + "%");
+    $('#activity-level').css('width', tamagotchiOne.activity + "%");
+    $('#sleep-level').css('width', tamagotchiOne.sleep + "%");
     $('.pennies').empty();
     $('.pennies').append(player.pennies);
   }

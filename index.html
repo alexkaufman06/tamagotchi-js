@@ -2,25 +2,60 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/bootstrap.css" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/scripts.js"></script>
     <title>Tamagotchi JS</title>
   </head>
   <body>
     <div class="container">
-      <h1 class="text-center">Tamagotchi</h1>
-      <p><strong>Pennies:</strong> <span class="pennies">0</span>¢</p>
-      <p><strong>Dimes:</strong> <span class="dimes">0</span>¢</p>
-      <p><strong>Dollars:</strong> $<span class="dollars">0</span></p>
-      <div class="progress progress-striped">
-        <div id="food" class="progress-bar progress-bar-success">Food Level</div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center">Tamagotchi</h1>
+        </div>
       </div>
-      <div class="progress progress-striped">
-        <div id="activity" class="progress-bar progress-bar-info">Activity Level</div>
+      <div class="row">
+        <div class="col-xs-4">
+          <p><strong>Pennies:</strong> <span class="pennies">0</span>¢</p>
+        </div>
+        <div class="col-xs-4">
+          <p><strong>Dimes:</strong> <span class="dimes">0</span>¢</p>
+        </div>
+        <div class="col-xs-4">
+          <p><strong>Dollars:</strong> $<span class="dollars">0</span></p>
+        </div>
       </div>
-      <div class="progress progress-striped">
-        <div id="sleep" class="progress-bar progress-bar-warning">Sleep Level</div>
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="progress progress-striped">
+            <div id="food-level" class="progress-bar progress-bar-success">Food Level</div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button id="feed" class="btn btn-success">Feed</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="progress progress-striped">
+            <div id="activity-level" class="progress-bar progress-bar-info">Activity Level</div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button id="play" class="btn btn-success">Play</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <div class="progress progress-striped">
+            <div id="sleep-level" class="progress-bar progress-bar-warning">Sleep Level</div>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <button id="rest" class="btn btn-success">Sleep</button>
+        </div>
       </div>
     </div>
   </body>
