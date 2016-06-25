@@ -6,6 +6,18 @@ $(document).ready(function() {
 
   var counter = setInterval(timer, 250);
 
+  $('#feed').click(function() {
+    tamagotchiOne.food += 5;
+  });
+
+  $('#play').click(function() {
+    tamagotchiOne.activity += 5;
+  });
+
+  $('#sleep').click(function() {
+    tamagotchiOne.sleep += 5;
+  });
+
   function timer() {
     player.pennies += 1;
     tamagotchiOne.food -= .5;
@@ -26,6 +38,18 @@ $(document).ready(function() {
       $('.dimes').append(player.dimes);
       $('.dollars').empty();
       $('.dollars').append(player.dollars);
+    }
+
+    if (tamagotchiOne.food > 100) {
+      tamagotchiOne.food = 100;
+    }
+
+    if (tamagotchiOne.activity > 100) {
+      tamagotchiOne.activity = 100;
+    }
+
+    if (tamagotchiOne.sleep > 100) {
+      tamagotchiOne.sleep = 100;
     }
 
     $('#food-level').css('width', tamagotchiOne.food + "%");
