@@ -6,6 +6,8 @@ $(document).ready(function() {
 
   var counter = setInterval(timer, 250);
 
+  // functions for buttons (refactor)
+
   $('#feed').click(function() {
     tamagotchiOne.food += 5;
   });
@@ -40,6 +42,8 @@ $(document).ready(function() {
       $('.dollars').append(player.dollars);
     }
 
+    // logic to stop level from going above 100 (refactor)
+
     if (tamagotchiOne.food > 100) {
       tamagotchiOne.food = 100;
     }
@@ -51,6 +55,43 @@ $(document).ready(function() {
     if (tamagotchiOne.sleep > 100) {
       tamagotchiOne.sleep = 100;
     }
+
+    // logic for changing color of progress bars (refactor)
+
+    if (tamagotchiOne.food > 65) {
+      $('#food-level').removeClass();
+      $('#food-level').addClass('progress-bar progress-bar-success');
+    } else if (tamagotchiOne.food < 65 && tamagotchiOne.food > 30) {
+      $('#food-level').removeClass();
+      $('#food-level').addClass('progress-bar progress-bar-warning');
+    } else if (tamagotchiOne.food < 30) {
+      $('#food-level').removeClass();
+      $('#food-level').addClass('progress-bar progress-bar-danger');
+    }
+
+    if (tamagotchiOne.activity > 65) {
+      $('#activity-level').removeClass();
+      $('#activity-level').addClass('progress-bar progress-bar-success');
+    } else if (tamagotchiOne.activity < 65 && tamagotchiOne.activity > 30) {
+      $('#activity-level').removeClass();
+      $('#activity-level').addClass('progress-bar progress-bar-warning');
+    } else if (tamagotchiOne.activity < 30) {
+      $('#activity-level').removeClass();
+      $('#activity-level').addClass('progress-bar progress-bar-danger');
+    }
+
+    if (tamagotchiOne.sleep > 65) {
+      $('#sleep-level').removeClass();
+      $('#sleep-level').addClass('progress-bar progress-bar-success');
+    } else if (tamagotchiOne.sleep < 65 && tamagotchiOne.sleep > 30) {
+      $('#sleep-level').removeClass();
+      $('#sleep-level').addClass('progress-bar progress-bar-warning');
+    } else if (tamagotchiOne.sleep < 30) {
+      $('#sleep-level').removeClass();
+      $('#sleep-level').addClass('progress-bar progress-bar-danger');
+    }
+
+    // logic for changing value of progress bars and updating penny count
 
     $('#food-level').css('width', tamagotchiOne.food + "%");
     $('#activity-level').css('width', tamagotchiOne.activity + "%");
