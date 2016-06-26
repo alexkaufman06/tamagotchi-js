@@ -2,7 +2,14 @@ $(document).ready(function() {
 
   var player = { pennies: 0, dimes: 0, dollars: 0 };
 
-  var tamagotchiOne = { food: 100, activity: 100, sleep: 100 };
+  var tamagotchiOne = { food: 100, activity: 100, sleep: 100, isDead: function() {
+      if ((this.food === 0) || (this.activity === 0) || (this.sleep === 0)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
 
   var counter = setInterval(timer, 250);
 
@@ -25,6 +32,12 @@ $(document).ready(function() {
     tamagotchiOne.food -= .5;
     tamagotchiOne.activity -= .5;
     tamagotchiOne.sleep -= .5;
+
+    if (tamagotchiOne.isDead() === true) {
+      clearInterval(counter);
+      alert("Your tamagotchi has passed away");
+      location.reload();
+    }
 
     if (player.pennies === 10) {
       player.dimes += 10;
