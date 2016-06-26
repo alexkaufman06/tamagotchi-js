@@ -3,13 +3,16 @@ $(document).ready(function() {
   var player = { pennies: 0, dimes: 0, dollars: 0 };
 
   var tamagotchiOne = { food: 100, activity: 100, sleep: 100, isDead: function() {
-      if ((this.food === 0) || (this.activity === 0) || (this.sleep === 0)) {
+      if ((this.food <= 0) || (this.activity <= 0) || (this.sleep <= 0)) {
         return true;
       } else {
         return false;
       }
     }
   };
+
+  var time = 0;
+  var difficulty = 0;
 
   var counter = setInterval(timer, 250);
 
@@ -29,13 +32,18 @@ $(document).ready(function() {
 
   function timer() {
     player.pennies += 1;
-    tamagotchiOne.food -= .5;
-    tamagotchiOne.activity -= .5;
-    tamagotchiOne.sleep -= .5;
+    tamagotchiOne.food -= (.5 + difficulty);
+    tamagotchiOne.activity -= (.5 + difficulty);
+    tamagotchiOne.sleep -= (.5 + difficulty);
+    time += .25;
+
+    if (time % 5 === 0) {
+      difficulty += .5;
+    }
 
     if (tamagotchiOne.isDead() === true) {
       clearInterval(counter);
-      alert("Your tamagotchi has passed away");
+      alert("This webpage regrets to inform you that your tamagotchi has passed away after a long life of " + time + "s. Don't worry, you can try again!");
       location.reload();
     }
 
