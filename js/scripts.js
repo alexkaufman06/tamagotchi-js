@@ -116,6 +116,26 @@ $(document).ready(function() {
       $('#sleep-level').addClass('progress-bar progress-bar-danger');
     }
 
+    // computer keyboard controls
+
+    $(document).keydown(function(e) {
+        if(e.which === 37) {
+            tamagotchiOne.food += 5;
+        }
+    });
+
+    $(document).keydown(function(e) {
+        if(e.which === 40) {
+            tamagotchiOne.activity += 5;
+        }
+    });
+
+    $(document).keydown(function(e) {
+        if(e.which === 39) {
+            tamagotchiOne.sleep += 5;
+        }
+    });
+
     // logic for changing value of progress bars and updating penny count
 
     $('#food-level').css('width', tamagotchiOne.food + "%");
