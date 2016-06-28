@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+  $(document).bind('touchmove', function(e) {
+  	e.preventDefault();
+  });
+
   var player = { pennies: 0, dimes: 0, dollars: 0 };
 
   var tamagotchiOne = { food: 100, activity: 100, sleep: 100, isDead: function() {
