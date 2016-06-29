@@ -116,6 +116,12 @@ $(document).ready(function() {
       $('#sleep-level').addClass('progress-bar progress-bar-danger');
     }
 
+    // item controls
+
+    if (player.dimes >= 50) {
+      $('.potion').removeClass('potion');
+    }
+
     // computer keyboard controls
 
     $(document).keydown(function(e) {

@@ -11,3 +11,8 @@
     width: 70px;
   }
 }
+
+.potion {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
