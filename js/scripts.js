@@ -119,21 +119,13 @@ $(document).ready(function() {
     // computer keyboard controls
 
     $(document).keydown(function(e) {
-        if(e.which === 37) {
-            tamagotchiOne.food += 5;
-        }
-    });
-
-    $(document).keydown(function(e) {
-        if(e.which === 40) {
-            tamagotchiOne.activity += 5;
-        }
-    });
-
-    $(document).keydown(function(e) {
-        if(e.which === 39) {
-            tamagotchiOne.sleep += 5;
-        }
+      if (e.which === 37) {
+        tamagotchiOne.food += .025;
+      } else if (e.which === 40) {
+        tamagotchiOne.activity += .025;
+      } else if (e.which === 39) {
+        tamagotchiOne.sleep += .025;
+      }
     });
 
     // logic for changing value of progress bars and updating penny count
