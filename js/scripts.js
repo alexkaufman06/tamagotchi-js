@@ -6,6 +6,9 @@ $(document).ready(function() {
 
   var player = { pennies: 0, dimes: 0, dollars: 0 };
 
+  $('.money').empty();
+  $('.money').append(player.money);
+
   var tamagotchiOne = { food: 100, activity: 100, sleep: 100, isDead: function() {
       if ((this.food <= 0) || (this.activity <= 0) || (this.sleep <= 0)) {
         return true;
@@ -52,15 +55,15 @@ $(document).ready(function() {
     }
 
     if (player.pennies === 10) {
-      player.dimes += 10;
+      player.dimes += 1;
       player.pennies -=10;
       $('.dimes').empty();
       $('.dimes').append(player.dimes);
     }
 
-    if (player.dimes === 100) {
+    if (player.dimes === 10) {
       player.dollars += 1;
-      player.dimes -= 100;
+      player.dimes -= 10;
       $('.dimes').empty();
       $('.dimes').append(player.dimes);
       $('.dollars').empty();
@@ -117,9 +120,26 @@ $(document).ready(function() {
     }
 
     // item controls
+    if (player.dimes < 5) {
+      $('#potion').addClass('gray-item');
+    }
 
-    if (player.dimes >= 50) {
-      $('.potion').removeClass('potion');
+    if (player.dimes > 4) {
+      $('#potion').removeClass('gray-item');
+
+      $('body').on('click','img', function() {
+        tamagotchiOne.food += 10;
+        tamagotchiOne.activity += 10;
+        tamagotchiOne.sleep += 10;
+        player.dimes -= 5;
+        $('.dimes').empty();
+        $('.dimes').append(player.dimes);
+        $('#potion').addClass('gray-item');
+
+        if (player.dimes > 4) {
+          $('#potion').removeClass('gray-item');
+        }
+      });
     }
 
     // computer keyboard controls
