@@ -12,6 +12,10 @@
   }
 }
 
+.red {
+  background-color: red;
+}
+
 .stats {
   padding-left: 35px;
 }

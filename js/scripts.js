@@ -36,12 +36,21 @@ $(document).ready(function() {
   // shop buttons
 
   $('#buy-potion').on('click', 'img', function () {
-    tamagotchi.food += 25;
-    tamagotchi.activity += 25;
-    tamagotchi.sleep += 25;
+    tamagotchi.food += 30;
+    tamagotchi.activity += 30;
+    tamagotchi.sleep += 30;
     tamagotchi.money -= .5;
     $('.money').empty();
     $('.money').append(Math.round(tamagotchi.money * 100)/100);
+  });
+
+  $('#buy-evolve').on('click', 'img', function () {
+    tamagotchi.money -= 1;
+    tamagotchi.food = 100;
+    tamagotchi.activity = 100;
+    tamagotchi.sleep = 100;
+    $('#pokemon').attr('src', 'images/evolutionOne.gif');
+    setTimeout(function(){ $('#pokemon').attr('src', 'images/charmeleon.gif'); }, 2250);
   });
 
   function timer() {
@@ -52,10 +61,21 @@ $(document).ready(function() {
       $('#buy-potion').hide();
     }
 
-    if (tamagotchi.money > .49) {
+    if (tamagotchi.money > .5) {
       $('#potion').hide();
       $('#buy-potion').removeClass('hide');
       $('#buy-potion').show();
+    }
+
+    if (tamagotchi.money < 1) {
+      $('#evolve').show();
+      $('#buy-evolve').hide();
+    }
+
+    if (tamagotchi.money > 1) {
+      $('#evolve').hide();
+      $('#buy-evolve').removeClass('hide');
+      $('#buy-evolve').show();
     }
 
     tamagotchi.money += .01;
@@ -144,11 +164,11 @@ $(document).ready(function() {
     var moneyRounded = Math.round(tamagotchi.money * 100)/100;
     $('.money').append(moneyRounded.toFixed(2));
     $('.sleep').empty();
-    $('.sleep').append(tamagotchi.sleep);
+    $('.sleep').append(tamagotchi.sleep.toFixed());
     $('.activity').empty();
-    $('.activity').append(tamagotchi.activity);
+    $('.activity').append(tamagotchi.activity.toFixed());
     $('.food').empty();
-    $('.food').append(tamagotchi.food);
+    $('.food').append(tamagotchi.food.toFixed());
   }
 
 });
