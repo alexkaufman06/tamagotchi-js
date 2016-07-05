@@ -19,7 +19,7 @@ $(document).ready(function() {
   var difficulty = 0;
   var counter = setInterval(timer, 250);
 
-  // functions for buttons (refactor)
+  // functions for buttons
 
   $('#feed').click(function() {
     tamagotchi.food += 5;
@@ -36,9 +36,9 @@ $(document).ready(function() {
   // shop buttons
 
   $('#buy-potion').on('click', 'img', function () {
-    tamagotchi.food += 10;
-    tamagotchi.activity += 10;
-    tamagotchi.sleep += 10;
+    tamagotchi.food += 25;
+    tamagotchi.activity += 25;
+    tamagotchi.sleep += 25;
     tamagotchi.money -= .5;
     $('.money').empty();
     $('.money').append(Math.round(tamagotchi.money * 100)/100);
@@ -70,11 +70,11 @@ $(document).ready(function() {
 
     if (tamagotchi.isDead() === true) {
       clearInterval(counter);
-      alert("This webpage regrets to inform you that your tamagotchi has passed away after a long life of " + time + "seconds. Don't worry, you can try again!");
+      alert("This webpage regrets to inform you that your tamagotchi has passed away after a long life of " + time + " seconds. Don't worry, you can try again!");
       location.reload();
     }
 
-    // logic to stop level from going above 100 (refactor)
+    // logic to stop level from going above 100 (refac
 
     if (tamagotchi.food > 100) {
       tamagotchi.food = 100;
@@ -88,7 +88,7 @@ $(document).ready(function() {
       tamagotchi.sleep = 100;
     }
 
-    // logic for changing color of progress bars (refactor)
+    // logic for changing color of progress bars
 
     if (tamagotchi.food > 65) {
       $('#food-level').removeClass();
@@ -135,13 +135,20 @@ $(document).ready(function() {
       }
     });
 
-    // logic for changing value of progress bars and updating money count
+    // logic for changing value of progress bars, stats, and updating money count
 
     $('#food-level').css('width', tamagotchi.food + "%");
     $('#activity-level').css('width', tamagotchi.activity + "%");
     $('#sleep-level').css('width', tamagotchi.sleep + "%");
     $('.money').empty();
-    $('.money').append(Math.round(tamagotchi.money * 100)/100);
+    var moneyRounded = Math.round(tamagotchi.money * 100)/100;
+    $('.money').append(moneyRounded.toFixed(2));
+    $('.sleep').empty();
+    $('.sleep').append(tamagotchi.sleep);
+    $('.activity').empty();
+    $('.activity').append(tamagotchi.activity);
+    $('.food').empty();
+    $('.food').append(tamagotchi.food);
   }
 
 });

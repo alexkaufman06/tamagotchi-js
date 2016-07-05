@@ -8,8 +8,12 @@
   }
 
   .btn {
-    width: 70px;
+    width: 60px;
   }
+}
+
+.stats {
+  padding-left: 35px;
 }
 
 .gray-item {
