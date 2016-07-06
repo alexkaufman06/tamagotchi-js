@@ -12,6 +12,19 @@
   }
 }
 
+@font-face {
+  font-family: "Pokemon Solid";
+  src: url("../fonts/pokemonSolid.ttf");
+}
+
+body {
+  font-family: "Pokemon Solid";
+}
+
+h1 {
+  font-family: "Pokemon Solid";
+}
+
 .red {
   background-color: red;
 }
