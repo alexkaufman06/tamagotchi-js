@@ -1,6 +1,14 @@
 @media (max-width: 767px) {
+  body {
+    background-color: #000;
+    text-align: center;
+  }
+
   h1 {
-    font-size: 50px;
+    color: yellow;
+    -webkit-text-stroke: 2.5px blue;
+    letter-spacing: 5px;
+    font-size: 47px;
   }
 
   .col-xs-9 {

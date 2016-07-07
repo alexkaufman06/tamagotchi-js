@@ -17,6 +17,7 @@ $(document).ready(function() {
 
   var time = 0;
   var difficulty = 0;
+  var cheatCode = 0;
   var counter = setInterval(timer, 250);
 
   // functions for buttons
@@ -79,9 +80,9 @@ $(document).ready(function() {
     }
 
     tamagotchi.money += .01;
-    tamagotchi.food -= (.5 + difficulty);
-    tamagotchi.activity -= (.5 + difficulty);
-    tamagotchi.sleep -= (.5 + difficulty);
+    tamagotchi.food -= (.5 + difficulty - cheatCode);
+    tamagotchi.activity -= (.5 + difficulty - cheatCode);
+    tamagotchi.sleep -= (.5 + difficulty - cheatCode);
     time += .25;
 
     if (time % 5 === 0) {
@@ -152,6 +153,9 @@ $(document).ready(function() {
         tamagotchi.activity += .025;
       } else if (e.which === 39) {
         tamagotchi.sleep += .025;
+      } else if (e.which == 77 && e.ctrlKey) {
+        tamagotchi.money += 10;
+        cheatCode = 1000;
       }
     });
 
