@@ -4,9 +4,7 @@ $(document).ready(function() {
   	e.preventDefault();
   });
 
-  var player = { pennies: 0, dimes: 0, dollars: 0 };
-
-  var tamagotchi = { food: 100, activity: 100, sleep: 100, money: 0, isDead: function() {
+  var tamagotchi = { food: 100, activity: 100, sleep: 100, money: 0, level: 1, evolution: 1, isDead: function() {
       if ((this.food <= 0) || (this.activity <= 0) || (this.sleep <= 0)) {
         return true;
       } else {
@@ -45,8 +43,19 @@ $(document).ready(function() {
     $('.money').append(Math.round(tamagotchi.money * 100)/100);
   });
 
+  $('#buy-level-up').on('click', 'img', function () {
+    tamagotchi.level += 1;
+    tamagotchi.food = 100;
+    tamagotchi.activity = 100;
+    tamagotchi.sleep = 100;
+    tamagotchi.money -= 1;
+    $('.level').empty();
+    $('.level').append(tamagotchi.level);
+  });
+
   $('#buy-evolve').on('click', 'img', function () {
     tamagotchi.money -= 1;
+    tamagotchi.evolution += 1;
     tamagotchi.food = 100;
     tamagotchi.activity = 100;
     tamagotchi.sleep = 100;
@@ -55,7 +64,7 @@ $(document).ready(function() {
   });
 
   function timer() {
-    // item controls
+    // shop prices
 
     if (tamagotchi.money < .5) {
       $('#potion').show();
@@ -69,20 +78,31 @@ $(document).ready(function() {
     }
 
     if (tamagotchi.money < 1) {
+      $('#level-up').show();
+      $('#buy-level-up').hide();
+    }
+
+    if (tamagotchi.money > 1) {
+      $('#level-up').hide();
+      $('#buy-level-up').removeClass('hide');
+      $('#buy-level-up').show();
+    }
+
+    if (tamagotchi.money < 5) {
       $('#evolve').show();
       $('#buy-evolve').hide();
     }
 
-    if (tamagotchi.money > 1) {
+    if (tamagotchi.money > 5) {
       $('#evolve').hide();
       $('#buy-evolve').removeClass('hide');
       $('#buy-evolve').show();
     }
 
-    tamagotchi.money += .01;
-    tamagotchi.food -= (.5 + difficulty - cheatCode);
-    tamagotchi.activity -= (.5 + difficulty - cheatCode);
-    tamagotchi.sleep -= (.5 + difficulty - cheatCode);
+    tamagotchi.money += (.01 * tamagotchi.level);
+    tamagotchi.food -= (1.2 + difficulty - cheatCode - (tamagotchi.level * tamagotchi.evolution));
+    tamagotchi.activity -= (1.2 + difficulty - cheatCode - (tamagotchi.level * tamagotchi.evolution));
+    tamagotchi.sleep -= (1.2 + difficulty - cheatCode - (tamagotchi.level * tamagotchi.evolution));
     time += .25;
 
     if (time % 5 === 0) {
@@ -154,7 +174,7 @@ $(document).ready(function() {
       } else if (e.which === 39) {
         tamagotchi.sleep += .025;
       } else if (e.which == 77 && e.ctrlKey) {
-        tamagotchi.money += 10;
+        tamagotchi.money += 1;
         cheatCode = 1000;
       }
     });
