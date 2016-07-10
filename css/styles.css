@@ -1,6 +1,5 @@
 @media (max-width: 767px) {
   body {
-    background-color: #000;
     text-align: center;
   }
 
@@ -27,6 +26,7 @@
 
 body {
   font-family: "Pokemon Solid";
+  background-color: #000;
 }
 
 h1 {
