@@ -10,6 +10,12 @@ $(document).ready(function() {
       } else {
         return false;
       }
+    }, pokeMaster: function() {
+      if (this.level === 99) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
 
@@ -59,8 +65,10 @@ $(document).ready(function() {
     tamagotchi.food = 100;
     tamagotchi.activity = 100;
     tamagotchi.sleep = 100;
+    alert('...What?\nCharmander is evolving!');
     $('#pokemon').attr('src', 'images/evolutionOne.gif');
     setTimeout(function(){ $('#pokemon').attr('src', 'images/charmeleon.gif'); }, 2250);
+    setTimeout(function(){ alert('Charmander evolved into Charmeleon!'); }, 2750);
   });
 
   $('#buy-evolve2').on('click', 'img', function () {
@@ -69,9 +77,12 @@ $(document).ready(function() {
     tamagotchi.food = 100;
     tamagotchi.activity = 100;
     tamagotchi.sleep = 100;
+    alert('...What?\nCharmeleon is evolving!')
     $('#pokemon').attr('src', 'images/evolutionTwo.gif');
     setTimeout(function(){ $('#pokemon').attr('src', 'images/evolutionThree.gif'); }, 3150);
+    setTimeout(function(){ alert('Charmeleon evolved into Charizard!'); }, 4249);
     setTimeout(function(){ $('#pokemon').attr('src', 'images/charizard.gif'); }, 4250);
+
   });
 
   function timer() {
@@ -130,7 +141,21 @@ $(document).ready(function() {
 
     if (tamagotchi.isDead() === true) {
       clearInterval(counter);
-      alert("This webpage regrets to inform you that your tamagotchi has passed away after a long life of " + time + " seconds. Don't worry, you can try again!");
+      alert("This webpage regrets to inform you that your tamagotchi has passed away after a long life of " + time + " seconds...\n\nDon't worry, you can try again!");
+      location.reload();
+    }
+
+    //keep level from going over 99
+
+    if (tamagotchi.level > 99) {
+      tamagotchi.level = 99;
+    }
+
+    if (tamagotchi.pokeMaster() === true) {
+      $('.level').empty();
+      $('.level').append(tamagotchi.level);
+      clearInterval(counter);
+      alert("Wow! You have reached level 99.\nCongrats on becoming a pokemaster!\nThanks for playing!");
       location.reload();
     }
 
