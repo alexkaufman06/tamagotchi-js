@@ -82,7 +82,6 @@ $(document).ready(function() {
     setTimeout(function(){ $('#pokemon').attr('src', 'images/evolutionThree.gif'); }, 3150);
     setTimeout(function(){ alert('Charmeleon evolved into Charizard!'); }, 4249);
     setTimeout(function(){ $('#pokemon').attr('src', 'images/charizard.gif'); }, 4250);
-
   });
 
   function timer() {
@@ -211,16 +210,56 @@ $(document).ready(function() {
     // computer keyboard controls
 
     $(document).keydown(function(e) {
-      if (e.which === 37) {
-        tamagotchi.food += .025;
-      } else if (e.which === 40) {
-        tamagotchi.activity += .025;
-      } else if (e.which === 39) {
-        tamagotchi.sleep += .025;
-      } else if (e.which == 77 && e.ctrlKey) {
-        tamagotchi.money += 1;
-        cheatCode = 1000;
-      }
+        if (e.which === 37 && this.className === 'hold') {
+          tamagotchi.food += .025;
+        } else if (e.which === 40) {
+          tamagotchi.activity += .025;
+        } else if (e.which === 39) {
+          tamagotchi.sleep += .025;
+        } else if (e.which == 77 && e.ctrlKey) {
+          tamagotchi.money += 1;
+          cheatCode = 1000;
+        } else if (e.which == 65 && tamagotchi.money > 5 && tamagotchi.evolution == 1) {
+          tamagotchi.money -= 5;
+          tamagotchi.evolution += .5;
+          tamagotchi.food = 100;
+          tamagotchi.activity = 100;
+          tamagotchi.sleep = 100;
+          alert('...What?\nCharmander is evolving!');
+          $('#pokemon').attr('src', 'images/evolutionOne.gif');
+          setTimeout(function(){ $('#pokemon').attr('src', 'images/charmeleon.gif'); }, 2250);
+          setTimeout(function(){ alert('Charmander evolved into Charmeleon!'); }, 2750);
+        } else if (e.which == 65 && tamagotchi.money > 10 && tamagotchi.evolution == 1.5) {
+          tamagotchi.money -= 5;
+          tamagotchi.evolution += .5;
+          tamagotchi.food = 100;
+          tamagotchi.activity = 100;
+          tamagotchi.sleep = 100;
+          alert('...What?\nCharmeleon is evolving!')
+          $('#pokemon').attr('src', 'images/evolutionTwo.gif');
+          setTimeout(function(){ $('#pokemon').attr('src', 'images/evolutionThree.gif'); }, 3150);
+          setTimeout(function(){ alert('Charmeleon evolved into Charizard!'); }, 4249);
+          setTimeout(function(){ $('#pokemon').attr('src', 'images/charizard.gif'); }, 4250);
+        } else if (e.which == 83 && tamagotchi.money > 1 && this.className === 'hold') {
+          tamagotchi.money -= 1;
+          tamagotchi.level += 1;
+          tamagotchi.food = 100;
+          tamagotchi.activity = 100;
+          tamagotchi.sleep = 100;
+          $('.level').empty();
+          $('.level').append(tamagotchi.level);
+        } else if (e.which == 68 && tamagotchi.money > .49) {
+          tamagotchi.money -= .5;
+          tamagotchi.food = 100;
+          tamagotchi.avtivity = 100;
+          tamagotchi.sleep = 100;
+        }
+
+        this.className = 'hold';
+    });
+
+    $(document).keyup(function(e) {
+      this.className = '';
     });
 
     // logic for changing value of progress bars, stats, and updating money count
