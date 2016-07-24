@@ -251,7 +251,7 @@ $(document).ready(function() {
         } else if (e.which == 68 && tamagotchi.money > .49) {
           tamagotchi.money -= .5;
           tamagotchi.food = 100;
-          tamagotchi.avtivity = 100;
+          tamagotchi.activity = 100;
           tamagotchi.sleep = 100;
         }
 
