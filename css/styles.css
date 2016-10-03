@@ -67,4 +67,9 @@ h1 {
     letter-spacing: 15px;
     padding-bottom: 20px;
   }
+
+  .btn {
+    width: 75px;
+    margin-top: -10px;
+  }
 }
